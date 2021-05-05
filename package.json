@@ -1,0 +1,28 @@
+{
+  "name": "mern-electro-store",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "npm run start --prefix server",
+    "installer": "concurrently \"cd client && npm install\" \"cd server && npm install\"",
+    "server": "npm run server --prefix server",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server-postbuild": "cd server && npm install",
+    "client-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
+    "heroku-postbuild": "npm run server-postbuild && npm run client-postbuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtemGavrishchishen/mern-electro-store.git"
+  },
+  "author": "Artem Havryshchyshen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArtemGavrishchishen/mern-electro-store/issues"
+  },
+  "homepage": "https://github.com/ArtemGavrishchishen/mern-electro-store#readme",
+  "devDependencies": {
+    "concurrently": "^6.0.2"
+  }
+}
