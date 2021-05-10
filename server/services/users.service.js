@@ -1,5 +1,3 @@
-const bcrypt = require('bcryptjs')
-
 const User = require('../models/User')
 
 exports.getUsers = async () => {
@@ -18,9 +16,29 @@ exports.getUsers = async () => {
   }
 }
 
-exports.checkUser = async data => {
+exports.getUserByEmail = async email => {
   try {
-    const { email } = data
+    const user = await User.findOne({ email })
+    const { __v, ...userObject } = { ...user.toObject() }
+
+    return userObject
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+exports.getUserById = async id => {
+  try {
+    const user = await User.findOne({ _id: id })
+    const { __v, password, ...userObject } = { ...user.toObject() }
+    return userObject
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+exports.checkUserByEmail = async email => {
+  try {
     const user = await User.findOne({ email })
 
     if (user) {
@@ -30,20 +48,7 @@ exports.checkUser = async data => {
     }
   } catch (error) {
     console.log(error)
-  }
-}
-
-exports.createUser = async data => {
-  try {
-    const { name, surname, email, password } = data
-
-    const hashedPassword = await bcrypt.hash(password, 12)
-    const user = new User({ name, surname, email, password: hashedPassword })
-    await user.save()
-
-    return true
-  } catch (error) {
-    console.log(error)
+    return false
   }
 }
 
