@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
-import useAPI from './hooks/API.hook'
+import useAPI from '../hooks/API.hook'
 
-function App() {
+function ApiFetchData() {
   const { request } = useAPI()
   const [state, setState] = useState(null)
 
@@ -19,12 +19,7 @@ function App() {
     fetchData()
   }, [fetchData])
 
-  return (
-    <div className="App">
-      <h1>MERN ELECTRO STORE</h1>
-      {state && <h2>{state}</h2>}
-    </div>
-  )
+  return <>{state && <h2>{state}</h2>}</>
 }
 
-export default App
+export default ApiFetchData

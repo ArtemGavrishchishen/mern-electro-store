@@ -1,20 +1,20 @@
 const UsersService = require('../services/users.service')
 
 exports.getUsers = async (req, res) => {
-  // try {
-  //   const currentUser = await UsersService.getUserById(req.user.userId)
-  //   if (!currentUser.isAdmin) {
-  //     return res.status(401).json({ message: 'Access denied' })
-  //   }
-  //   const result = await UsersService.getUsers()
-  //   if (result) {
-  //     return res.status(200).send({ data: result })
-  //   } else {
-  //     return res.status(400).send({ message: 'Bad request.' })
-  //   }
-  // } catch (error) {
-  //   console.log(error)
-  // }
+  try {
+    const currentUser = await UsersService.getUserById(req.user.userId)
+    if (!currentUser.isAdmin) {
+      return res.status(401).json({ message: 'Access denied' })
+    }
+    const result = await UsersService.getUsers()
+    if (result) {
+      return res.status(200).send({ data: result })
+    } else {
+      return res.status(400).send({ message: 'Bad request.' })
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 exports.getUserById = async (req, res) => {
