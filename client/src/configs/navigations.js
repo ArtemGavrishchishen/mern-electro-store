@@ -1,6 +1,9 @@
 import routesPath from './routesPath'
 
-export const HeaderNavigations = (isAuthenticated = false, isAdmin = false) => {
+export const useNavigations = ({
+  isAuthenticated = false,
+  isAdmin = false,
+}) => {
   const navigation = [
     {
       name: 'Home',
@@ -24,7 +27,7 @@ export const HeaderNavigations = (isAuthenticated = false, isAdmin = false) => {
     ]
   }
 
-  if (isAuthenticated) {
+  if (isAuthenticated && !isAdmin) {
     return [...navigation, { name: 'Orders', path: routesPath.ORDERS }]
   }
 

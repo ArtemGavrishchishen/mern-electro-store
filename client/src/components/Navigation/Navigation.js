@@ -1,11 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-import { HeaderNavigations } from '../../configs/navigations'
+import { useNavigations } from '../../configs/navigations'
 import styles from './Navigation.module.css'
 
 const Navigation = () => {
-  const link = HeaderNavigations({ isAdmin: true })
+  const link = useNavigations({ isAuthenticated: true, isAdmin: true })
   return (
     <ul>
       {link.map(({ name, path }) => (

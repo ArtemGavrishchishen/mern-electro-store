@@ -2,11 +2,13 @@ import React from 'react'
 
 import AppHeader from './AppHeader'
 import AppFooter from './AppFooter'
+import AuthForm from './AuthForm'
+
 import { useRoutes } from '../configs/routes'
 import ApiFetchData from './ApiFetchData'
 
 function App() {
-  const routes = useRoutes({ isAdmin: true })
+  const routes = useRoutes({ isAuthenticated: true, isAdmin: false })
 
   return (
     <>
@@ -18,6 +20,8 @@ function App() {
         {routes}
 
         <ApiFetchData />
+
+        <AuthForm />
       </main>
 
       <AppFooter />

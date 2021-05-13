@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
-import useAPI from '../hooks/API.hook'
+import useAPI from '../hooks/useAPI.hook'
 
 function ApiFetchData() {
   const { request } = useAPI()
