@@ -1,26 +1,18 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import Nav from 'react-bootstrap/Nav'
 
 import { useNavigations } from '../../configs/navigations'
-import styles from './Navigation.module.css'
 
 const Navigation = () => {
   const link = useNavigations({ isAuthenticated: true, isAdmin: true })
   return (
-    <ul>
+    <Nav className="mr-auto">
       {link.map(({ name, path }) => (
-        <li className={styles.item} key={name}>
-          <NavLink
-            exact
-            to={path}
-            className={styles.link}
-            activeClassName={styles.active}
-          >
-            {name}
-          </NavLink>
-        </li>
+        <Nav.Link key={name} href={path}>
+          {name}
+        </Nav.Link>
       ))}
-    </ul>
+    </Nav>
   )
 }
 

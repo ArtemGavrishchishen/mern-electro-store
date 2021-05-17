@@ -1,0 +1,22 @@
+.btn {
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 7px;
+  border-radius: 25%;
+  transition: background-color 0.2s linear;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn svg {
+  fill: #ffffff;
+}
+
+/* .active svg {
+  fill: #17a2b8;
+} */

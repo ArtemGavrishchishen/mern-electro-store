@@ -13,10 +13,6 @@ export const useNavigations = ({
       name: 'Technics',
       path: routesPath.TECHNICS,
     },
-    {
-      name: 'Cart',
-      path: routesPath.CART,
-    },
   ]
 
   if (isAdmin) {
@@ -33,3 +29,5 @@ export const useNavigations = ({
 
   return navigation
 }
+
+export const cartNavigation = { name: 'Cart', path: routesPath.CART }
