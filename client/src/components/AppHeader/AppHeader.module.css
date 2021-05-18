@@ -1,9 +1,55 @@
 .header {
   flex: 0 0 auto;
   background-color: #343a40;
-  min-height: 55px;
+}
+@media (max-width: 1023px) {
+  .header {
+    min-height: 110px;
+  }
 }
 
-.search {
-  margin-right: 40px;
+@media (min-width: 1024px) {
+  .header {
+    min-height: 55px;
+  }
+}
+
+.menu {
+  margin-right: auto;
+}
+
+.user {
+  margin-right: 15px;
+}
+
+.mobile .search {
+  justify-content: space-around;
+}
+
+.mobile .search input,
+.tablet .search input {
+  width: calc(100% - 100px);
+  justify-content: center;
+}
+
+.tablet {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.tablet .search {
+  justify-content: center;
+}
+
+.desktop .search {
+  margin-right: 20px;
+  width: 45%;
+}
+
+.desktop .search input {
+  width: calc(100% - 100px);
+  min-width: 40%;
 }

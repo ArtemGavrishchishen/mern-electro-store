@@ -1,0 +1,74 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 1030;
+}
+
+.container {
+  position: relative;
+  width: 200px;
+  min-height: 100vh;
+  background-color: #343a40;
+}
+
+.header {
+  height: 50px;
+  border-bottom: 1px solid #fff;
+}
+
+.enter .container {
+  left: -250px;
+}
+
+.enterDone .container {
+  left: 0;
+  transition: left 300ms;
+}
+
+.exit .container {
+  left: -250px;
+  transition: left 300ms;
+}
+
+.btn {
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 7px;
+  border-radius: 25%;
+  transition: background-color 0.2s linear;
+}
+
+.btn:hover,
+.btn:focus,
+.btnClose:hover,
+.btnClose:focus {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn svg {
+  fill: #ffffff;
+}
+
+.btnClose {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 25%;
+  transition: background-color 0.2s linear;
+}
+
+.btnClose svg {
+  fill: #ffffff;
+  padding-bottom: 12px;
+}
