@@ -36,6 +36,19 @@ exports.getUserById = async (req, res) => {
   }
 }
 
+exports.getUser = async (req, res) => {
+  try {
+    const currentUser = await UsersService.getUserById(req.user.userId)
+    if (currentUser) {
+      return res.status(200).send({ data: currentUser })
+    } else {
+      return res.status(400).send({ message: 'Bad request.' })
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 exports.updateUser = async (req, res) => {}
 
 exports.deleteUser = async (req, res) => {}

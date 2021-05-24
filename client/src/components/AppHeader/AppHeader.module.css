@@ -42,6 +42,8 @@
 
 .tablet .search {
   justify-content: center;
+  background-color: #343a40 !important;
+  padding-bottom: 10px;
 }
 
 .desktop .search {

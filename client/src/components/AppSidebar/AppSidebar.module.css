@@ -10,7 +10,7 @@
 
 .container {
   position: relative;
-  width: 200px;
+  width: 250px;
   min-height: 100vh;
   background-color: #343a40;
 }
@@ -21,7 +21,7 @@
 }
 
 .enter .container {
-  left: -250px;
+  left: -275px;
 }
 
 .enterDone .container {
@@ -30,7 +30,7 @@
 }
 
 .exit .container {
-  left: -250px;
+  left: -275px;
   transition: left 300ms;
 }
 

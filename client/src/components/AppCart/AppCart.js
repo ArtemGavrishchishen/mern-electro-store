@@ -16,7 +16,7 @@ const AppCart = () => {
 
   return (
     <>
-      <AppModal isModal={show} closeModal={() => setShow(false)}>
+      <AppModal isModal={show} title="Cart" closeModal={() => setShow(false)}>
         <div className={styles.cart}>
           {items.length === 0 && <h2>Cart is empty</h2>}
 

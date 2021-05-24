@@ -27,7 +27,7 @@ const AppSidebar = () => {
                 <Close />
               </div>
             </div>
-            <Navigation column={true} />
+            <Navigation column={true} closeSide={() => setShow(false)} />
           </div>
         </div>
       </CSSTransition>

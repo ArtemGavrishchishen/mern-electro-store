@@ -1,23 +1,41 @@
-import { SIGN_IN, SIGN_OUT } from '../actions/auth.actions'
+import { SIGN_IN, SET_TOKEN_IN_STORE, SIGN_OUT } from '../actions/auth.actions'
 
 const initialState = {
   token: null,
-  isAuthenticated: false,
 }
 
 const handlers = {
-  [SIGN_IN]: (state, payload) => ({
+  [SIGN_IN.SUCCESS]: (state, payload) => ({
     ...state,
-    token: payload,
-    isAuthenticated: true,
+    token: payload.token,
   }),
+
+  [SET_TOKEN_IN_STORE]: (state, payload) => ({
+    ...state,
+    token: payload.token,
+  }),
+
+  [SIGN_IN.ERROR]: (state, payload) => {
+    return {
+      ...state,
+      token: null,
+    }
+  },
+
+  [SIGN_IN.REQUEST]: (state, payload) => {
+    return {
+      ...state,
+      token: null,
+    }
+  },
+
   [SIGN_OUT]: (state, payload) => {
     return {
       ...state,
       token: null,
-      isAuthenticated: false,
     }
   },
+
   DEFAULT: state => state,
 }
 

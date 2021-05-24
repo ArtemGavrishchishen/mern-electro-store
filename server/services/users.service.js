@@ -19,9 +19,11 @@ exports.getUsers = async () => {
 exports.getUserByEmail = async email => {
   try {
     const user = await User.findOne({ email })
-    const { __v, ...userObject } = { ...user.toObject() }
-
-    return userObject
+    if (user) {
+      const { __v, ...userObject } = { ...user.toObject() }
+      return userObject
+    }
+    return null
   } catch (error) {
     console.log(error)
   }
