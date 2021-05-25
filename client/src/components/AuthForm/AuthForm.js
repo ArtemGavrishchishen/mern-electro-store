@@ -7,17 +7,15 @@ import Tab from 'react-bootstrap/Tab'
 import Nav from 'react-bootstrap/Nav'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import get from 'lodash/get'
 import { useDispatch } from 'react-redux'
 
 import AppAlerts from '../AppAlerts'
 
 import { signIn } from '../../store/actions/auth.actions'
-import { useToken } from '../../hooks/token.hook'
+import { getUser } from '../../store/actions/user.actions'
 import styles from './AuthPage.module.css'
 
 const AuthForm = ({ closeModal }) => {
-  const { setToken } = useToken()
   const dispatch = useDispatch()
   const [key, setKey] = useState('first')
   const [error, setError] = useState(null)
@@ -40,10 +38,7 @@ const AuthForm = ({ closeModal }) => {
       dispatch(
         signIn(values, ({ error, data }) => {
           if (!error) {
-            const token = get(data, 'token', null)
-            if (token) {
-              setToken(token)
-            }
+            dispatch(getUser())
             closeModal()
           } else {
             setError(error.message)

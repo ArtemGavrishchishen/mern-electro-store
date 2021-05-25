@@ -1,4 +1,4 @@
-import { SIGN_IN, SET_TOKEN_IN_STORE, SIGN_OUT } from '../actions/auth.actions'
+import { SIGN_IN, SIGN_OUT } from '../actions/auth.actions'
 
 const initialState = {
   token: null,
@@ -6,11 +6,6 @@ const initialState = {
 
 const handlers = {
   [SIGN_IN.SUCCESS]: (state, payload) => ({
-    ...state,
-    token: payload.token,
-  }),
-
-  [SET_TOKEN_IN_STORE]: (state, payload) => ({
     ...state,
     token: payload.token,
   }),

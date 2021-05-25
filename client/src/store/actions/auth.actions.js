@@ -31,14 +31,6 @@ export const signIn =
       })
     )
 
-export const SET_TOKEN_IN_STORE = 'SET_TOKEN_IN_STORE'
-export const setTokenInStore = token => async dispatch => {
-  dispatch({
-    type: SET_TOKEN_IN_STORE,
-    payload: { token },
-  })
-}
-
 export const SIGN_OUT = 'SIGN_OUT'
 export const signOut = () => async dispatch => {
   dispatch({
