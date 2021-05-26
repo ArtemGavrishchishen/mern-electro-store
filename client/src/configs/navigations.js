@@ -25,5 +25,33 @@ export const useNavigations = () => {
   return navigation
 }
 
+export const useAdminNavigations = () => {
+  const state = useSelector(state => state)
+  const isAdmin = get(state, 'user.isAdmin', false)
+
+  if (isAdmin) {
+    return [
+      {
+        name: 'Add product',
+        path: routesPath.ADMIN,
+      },
+      {
+        name: 'Technics',
+        path: `${routesPath.ADMIN}${routesPath.TECHNICS}`,
+      },
+      {
+        name: 'Orders',
+        path: `${routesPath.ADMIN}${routesPath.ORDERS}`,
+      },
+      {
+        name: 'Users',
+        path: `${routesPath.ADMIN}${routesPath.USERS}`,
+      },
+    ]
+  }
+
+  return []
+}
+
 export const ordersNavigation = { name: 'Orders', path: routesPath.ORDERS }
 export const cartNavigation = { name: 'Cart', path: routesPath.CART }

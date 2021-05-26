@@ -5,4 +5,5 @@ export default Object.freeze({
   TECHNICS_ITEM: '/technics/:id',
   CART: '/cart',
   ORDERS: '/orders',
+  USERS: '/users',
 })

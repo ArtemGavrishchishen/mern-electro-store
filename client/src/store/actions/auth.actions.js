@@ -3,7 +3,7 @@ import { asyncActionTypeCreators } from '../helpers'
 
 export const REGISTER = asyncActionTypeCreators('REGISTER')
 export const register =
-  ({ name, surname, email, password }) =>
+  ({ name, surname, email, password }, onResponse) =>
   dispatch =>
     dispatch(
       apiAction({
@@ -11,9 +11,7 @@ export const register =
         method: 'POST',
         label: REGISTER,
         data: { name, surname, email, password },
-        onResponse: response => {
-          console.log('apiAction_register_onResponse ', response)
-        },
+        onResponse: onResponse,
       })
     )
 

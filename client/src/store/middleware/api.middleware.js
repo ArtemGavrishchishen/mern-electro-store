@@ -58,6 +58,12 @@ export const apiMiddleware =
       }
     } catch (error) {
       const dataError = get(error, 'response.data', null)
+      const statusError = get(error, 'response.status', null)
+
+      if (statusError === 401) {
+        dispatch({ type: 'SIGN_OUT' })
+      }
+
       if (dataError) {
         dispatch({ type: label.ERROR })
         onResponse({ error: dataError, data: null })

@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 
 import AppAlerts from '../AppAlerts'
 
-import { signIn } from '../../store/actions/auth.actions'
+import { signIn, register } from '../../store/actions/auth.actions'
 import { getUser } from '../../store/actions/user.actions'
 import styles from './AuthPage.module.css'
 
@@ -19,6 +19,7 @@ const AuthForm = ({ closeModal }) => {
   const dispatch = useDispatch()
   const [key, setKey] = useState('first')
   const [error, setError] = useState(null)
+  const [message, setMessage] = useState(null)
 
   const formikLogin = useFormik({
     initialValues: {
@@ -36,7 +37,7 @@ const AuthForm = ({ closeModal }) => {
       setError(null)
 
       dispatch(
-        signIn(values, ({ error, data }) => {
+        signIn(values, ({ error }) => {
           if (!error) {
             dispatch(getUser())
             closeModal()
@@ -45,8 +46,6 @@ const AuthForm = ({ closeModal }) => {
           }
         })
       )
-
-      alert(JSON.stringify(values, null, 2))
     },
   })
 
@@ -67,28 +66,26 @@ const AuthForm = ({ closeModal }) => {
         .required('Required'),
     }),
     onSubmit: values => {
-      // closeModal()
-      alert(JSON.stringify(values, null, 2))
+      setMessage(null)
+      setError(null)
+      dispatch(
+        register(values, ({ error }) => {
+          if (!error) {
+            setMessage('This is a success')
+            setKey('first')
+          } else {
+            setError(error.message)
+          }
+        })
+      )
     },
   })
 
   return (
     <>
-      {/* <Toast
-        onClose={() => {
-          setError(null)
-          setShowAlert(false)
-        }}
-        show={showAlert}
-        delay={5000}
-        autohide
-        bsPrefix={styles.errorToast}
-      >
-        <Toast.Body>
-          <Alert variant={'danger'}>{error}</Alert>
-        </Toast.Body>
-      </Toast> */}
       <AppAlerts text={error} onCloseAlert={setError} />
+      <AppAlerts text={message} type="success" onCloseAlert={setMessage} />
+
       <Tab.Container
         id="left-tabs-example"
         activeKey={key}
