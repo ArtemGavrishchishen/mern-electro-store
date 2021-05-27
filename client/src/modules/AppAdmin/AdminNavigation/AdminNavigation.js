@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { NavLink } from 'react-router-dom'
 
-import { useAdminNavigations } from '../../configs/navigations'
+import { useAdminNavigations } from '../../../configs/navigations'
 import styles from './AdminNavigation.module.css'
 
 const AdminNavigation = () => {

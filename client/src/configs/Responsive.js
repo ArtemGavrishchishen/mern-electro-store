@@ -10,6 +10,17 @@ export const Tablet = ({ children }) => {
   return isTablet ? children : null
 }
 
+export const TabletAndDesktop = ({ children }) => {
+  const isDesktop = useMediaQuery({ minWidth: 1024 })
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 })
+
+  if (isDesktop || isTablet) {
+    return children
+  } else {
+    return null
+  }
+}
+
 export const Mobile = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 1024 })
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 })

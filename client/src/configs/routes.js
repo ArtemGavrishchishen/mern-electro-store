@@ -5,8 +5,15 @@ import get from 'lodash/get'
 
 import routesPath from './routesPath'
 
+// === Pages
 import AdminPage from '../pages/AdminPage'
 import OrdersPage from '../pages/OrdersPage'
+
+// === Admin Panel
+import AdminAddProductPanel from '../modules/AppAdmin/AdminAddProductPanel'
+import AdminTechnicsPanel from '../modules/AppAdmin/AdminTechnicsPanel'
+import AdminOrdersPanel from '../modules/AppAdmin/AdminOrdersPanel'
+import AdminUsersPanel from '../modules/AppAdmin/AdminUsersPanel'
 
 export const useRoutes = () => {
   const state = useSelector(state => state)
@@ -91,19 +98,19 @@ export const useAdminRoutes = () => {
     return (
       <Switch>
         <Route path={routesPath.ADMIN} exact>
-          <div>Admin main</div>
+          <AdminAddProductPanel />
         </Route>
 
         <Route path={`${routesPath.ADMIN}${routesPath.TECHNICS}`} exact>
-          <div>Admin TECHNICS</div>
+          <AdminTechnicsPanel />
         </Route>
 
         <Route path={`${routesPath.ADMIN}${routesPath.ORDERS}`} exact>
-          <div>Admin ORDERS</div>
+          <AdminOrdersPanel />
         </Route>
 
         <Route path={`${routesPath.ADMIN}${routesPath.USERS}`} exact>
-          <div>Admin USERS</div>
+          <AdminUsersPanel />
         </Route>
 
         <Redirect to={routesPath.ADMIN} />
