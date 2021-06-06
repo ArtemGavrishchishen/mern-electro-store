@@ -1,4 +1,5 @@
 import React from 'react'
+import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
@@ -18,21 +19,23 @@ const AdminPage = () => {
       </Mobile>
 
       <TabletAndDesktop>
-        <Row style={{ flex: '1 1 100%' }}>
-          <Col xs={4} md={3} lg={2}>
-            <AdminNavigation />
-          </Col>
-          <Col xs={8} md={9} lg={10}>
-            <Row>
-              <Col>
-                <h2 className="text-center mt-3 pr-4">Admin Page</h2>
-              </Col>
-            </Row>
-            <Row>
-              <Col>{routes}</Col>
-            </Row>
-          </Col>
-        </Row>
+        <Container fluid>
+          <Row style={{ flex: '1 1 100%' }}>
+            <Col xs={4} md={3} lg={2}>
+              <AdminNavigation />
+            </Col>
+            <Col xs={8} md={9} lg={10}>
+              <Row>
+                <Col>
+                  <h2 className="text-center mt-3 pr-4">Admin Page</h2>
+                </Col>
+              </Row>
+              <Row>
+                <Col>{routes}</Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
       </TabletAndDesktop>
     </>
   )

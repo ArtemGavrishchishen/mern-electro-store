@@ -1,51 +1,53 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
-import Tabs from 'react-bootstrap/Tabs'
+import Container from 'react-bootstrap/Container'
 import Tab from 'react-bootstrap/Tab'
 
-import AdminAddForm from '../AdminAddForm'
+import AdminAddForm from './AdminAddForm'
+
+import { types } from './configs'
 import styles from './AdminAddProductPanel.module.css'
 
 const AdminAddProductPanel = () => {
   const [selectedType, setSelectedType] = useState({
-    value: 'mobile',
+    value: types.MOBILE,
     label: 'Mobile',
   })
 
   const options = [
-    { value: 'mobile', label: 'Mobile' },
-    { value: 'tablets', label: 'Tablets' },
-    { value: 'notebooks', label: 'Notebooks' },
-    { value: 'tv', label: 'TV' },
+    { value: types.MOBILE, label: 'Mobile' },
+    { value: types.TABLETS, label: 'Tablets' },
+    { value: types.NOTEBOOKS, label: 'Notebooks' },
+    { value: types.TV, label: 'TV' },
+    { value: '', label: 'Other' },
   ]
 
   return (
     <>
-      <Select
-        value={selectedType}
-        onChange={e => setSelectedType(e)}
-        options={options}
-        className={styles.select}
-      />
-      <Tabs
-        id="controlled-tab-example"
-        activeKey={selectedType.value}
-        onSelect={k => setSelectedType(k)}
-        className="mb-3"
-      >
-        <Tab eventKey="mobile">
-          <AdminAddForm type="mobile" />
-        </Tab>
-        <Tab eventKey="tablets">
-          <AdminAddForm type="tablets" />
-        </Tab>
-        <Tab eventKey="notebooks">
-          <AdminAddForm type="notebooks" />
-        </Tab>
-        <Tab eventKey="tv">
-          <AdminAddForm type="tv" />
-        </Tab>
-      </Tabs>
+      <Container>
+        <Select
+          value={selectedType}
+          onChange={e => setSelectedType(e)}
+          options={options}
+          className={styles.select}
+        />
+
+        <Tab.Container
+          transition={false}
+          id="controlled-tab-example"
+          activeKey={selectedType.value}
+          onSelect={k => setSelectedType(k)}
+          className="mb-3"
+        >
+          <Tab.Content>
+            {options.map(tab => (
+              <Tab.Pane key={tab.value} eventKey={tab.value}>
+                <AdminAddForm type={tab.value} />
+              </Tab.Pane>
+            ))}
+          </Tab.Content>
+        </Tab.Container>
+      </Container>
     </>
   )
 }

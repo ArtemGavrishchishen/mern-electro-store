@@ -9,7 +9,7 @@ import styles from './AdminNavigation.module.css'
 const AdminNavigation = () => {
   const link = useAdminNavigations()
   return (
-    <Navbar bg="dark" variant="dark" className={styles.container}>
+    <Navbar bg="white" variant="light" className={styles.container}>
       <Nav className={`flex-column ${styles.nav}`}>
         {link.map(({ name, path }) => (
           <Nav.Link as={NavLink} key={name} to={path} exact>
