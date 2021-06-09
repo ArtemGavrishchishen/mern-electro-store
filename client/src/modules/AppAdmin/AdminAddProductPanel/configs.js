@@ -7,25 +7,30 @@ export const types = Object.freeze({
   TV: 'tv',
 })
 
+const FILE_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
+
 export const base = {
   value: {
     brand: '',
     model: '',
     description: '',
-    photo: '',
-    price: 0,
+    photo: undefined,
+    price: '',
   },
   schema: {
     brand: Yup.string().required('Required'),
     model: Yup.string().required('Required'),
     description: Yup.string().required('Required'),
-    // photo: Yup.mixed().when('isArray', {
-    //   is: Array.isArray,
-    //   then: Yup.array().of(Yup.string()),
-    //   otherwise: Yup.string(),
-    // }),
-    photo: Yup.string().required('Required'),
-    price: Yup.number().required('Required'),
+    photo: Yup.array()
+      .required('A file is required')
+      .of(
+        Yup.object().test(
+          'photo',
+          'Unsupported Format',
+          value => value && FILE_FORMATS.includes(value.file.type)
+        )
+      ),
+    price: Yup.number().required('Required').positive(),
   },
 }
 

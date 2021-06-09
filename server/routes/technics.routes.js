@@ -1,13 +1,23 @@
 const { Router } = require('express')
+const multer = require('multer')
+const upload = multer({ storage: multer.memoryStorage() })
 
+const Validator = require('../enhancers/validator')
 const TechnicsController = require('../controllers/technics.controller')
 
 const router = Router()
 router
   .route('/')
   .get(TechnicsController.getTechnics)
-  .post(TechnicsController.createTechnic)
   .put(TechnicsController.updateTechnic)
   .delete(TechnicsController.deleteTechnic)
+
+router
+  .route('/')
+  .post(
+    upload.single('image'),
+    Validator.baseTechnics,
+    TechnicsController.createTechnic
+  )
 
 module.exports = router

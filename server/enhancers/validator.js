@@ -1,6 +1,6 @@
 const { check } = require('express-validator')
 
-// ========== authValidarots
+// ========== authValidarots start
 
 exports.register = [
   check('email', 'Invalid email').normalizeEmail().isEmail(),
@@ -16,4 +16,12 @@ exports.login = [
   check('password', 'Enter password').exists(),
 ]
 
-// ==========
+// ========== authValidarots end
+
+exports.baseTechnics = [
+  check('brand', 'Please enter brand').notEmpty(),
+  check('model', 'Please enter model').notEmpty(),
+  check('description', 'Please enter description').notEmpty(),
+  // check('photo', 'Please enter photo').notEmpty(),
+  check('price', 'Please enter price').isInt().notEmpty(),
+]

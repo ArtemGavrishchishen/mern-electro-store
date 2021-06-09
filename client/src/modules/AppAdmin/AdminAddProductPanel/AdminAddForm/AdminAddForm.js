@@ -1,9 +1,10 @@
-import React from 'react'
-import { useFormik } from 'formik'
+import React, { useRef, useState } from 'react'
+import { FieldArray, Formik } from 'formik'
 import * as Yup from 'yup'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
+import Feedback from 'react-bootstrap/Feedback'
 
 import FormMobile from './FormMobile'
 import FormTablets from './FormTablets'
@@ -13,17 +14,39 @@ import FormTv from './FormTv'
 import { base, types } from '../configs'
 
 const AdminAddForm = ({ type }) => {
-  const formik = useFormik({
-    initialValues: base.value,
-    validationSchema: Yup.object(base.schema),
-    onSubmit: values => {
-      const data = {
-        addType: type,
-        values,
-      }
-      console.log(data)
-    },
-  })
+  const [fileName, setFileName] = useState('Upload file')
+  const inputRef = useRef()
+
+  const getFileArray = fileList => {
+    return Array.from(fileList)
+  }
+
+  const handleFileChange = (event, values, arrayHelper) => {
+    const arrFiles = getFileArray(event.target.files)
+    const file = arrFiles.length ? arrFiles[0] : undefined
+
+    if (!file) return
+    arrayHelper.replace(0, { file })
+
+    // if (Array.isArray(values)) {
+    //   arrayHelper.replace(0, { file })
+    // } else {
+    //   arrayHelper.push({ file })
+    // }
+
+    setFileName(file.name)
+    const dt = new DataTransfer()
+    arrFiles.forEach(file => {
+      dt.items.add(file)
+    })
+
+    inputRef.current.files = dt.files
+  }
+
+  const handleDelete = () => {
+    const dt = new DataTransfer()
+    inputRef.current.files = dt.files
+  }
 
   if (type === types.MOBILE) {
     return <FormMobile />
@@ -43,111 +66,130 @@ const AdminAddForm = ({ type }) => {
 
   return (
     <>
-      <Form noValidate onSubmit={formik.handleSubmit}>
-        <Form.Row>
-          <Form.Group as={Col}>
-            <Form.Label>Brand name</Form.Label>
-            <Form.Control
-              type="text"
-              name="brand"
-              placeholder="Brand name"
-              value={formik.values.brand}
-              onChange={formik.handleChange}
-              isValid={formik.touched.brand && !formik.errors.brand}
-              isInvalid={formik.touched.brand && !!formik.errors.brand}
-            />
+      <Formik
+        initialValues={base.value}
+        validateOnChange
+        validateOnBlur
+        validateOnMount
+        onSubmit={(values, actions) => {
+          console.log('Formik', values)
+          actions.resetForm()
+          setFileName('Upload file')
+          handleDelete()
+        }}
+        validationSchema={Yup.object(base.schema)}
+      >
+        {({ values, errors, touched, handleSubmit, handleChange }) => (
+          <Form noValidate onSubmit={handleSubmit}>
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label>Brand name</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="brand"
+                  placeholder="Brand name"
+                  value={values.brand}
+                  onChange={handleChange}
+                  isValid={touched.brand && !errors.brand}
+                  isInvalid={touched.brand && !!errors.brand}
+                />
 
-            <Form.Control.Feedback type="invalid">
-              {formik.errors.brand}
-            </Form.Control.Feedback>
-          </Form.Group>
+                <Form.Control.Feedback type="invalid">
+                  {errors.brand}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-          <Form.Group as={Col}>
-            <Form.Label>Model</Form.Label>
-            <Form.Control
-              type="text"
-              name="model"
-              placeholder="Model"
-              value={formik.values.model}
-              onChange={formik.handleChange}
-              isValid={formik.touched.model && !formik.errors.model}
-              isInvalid={formik.touched.model && !!formik.errors.model}
-            />
+              <Form.Group as={Col}>
+                <Form.Label>Model</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="model"
+                  placeholder="Model"
+                  value={values.model}
+                  onChange={handleChange}
+                  isValid={touched.model && !errors.model}
+                  isInvalid={touched.model && !!errors.model}
+                />
 
-            <Form.Control.Feedback type="invalid">
-              {formik.errors.model}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Form.Row>
+                <Form.Control.Feedback type="invalid">
+                  {errors.model}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Form.Row>
 
-        <Form.Row>
-          <Form.Group as={Col} className="col-8">
-            <Form.Label>Photo link</Form.Label>
-            <Form.Control
-              type="text"
-              name="photo"
-              placeholder="Photo link"
-              value={formik.values.photo}
-              onChange={formik.handleChange}
-              isValid={formik.touched.photo && !formik.errors.photo}
-              isInvalid={formik.touched.photo && !!formik.errors.photo}
-            />
+            <Form.Row>
+              <Form.Group as={Col} className="col-8">
+                <Form.Label>Photo</Form.Label>
+                <FieldArray
+                  name="photo"
+                  render={arrayHelper => (
+                    <Form.File id="formcheck-api-custom" custom>
+                      <Form.File.Input
+                        ref={inputRef}
+                        name="photo"
+                        onChange={event => {
+                          handleFileChange(event, values.fileInput, arrayHelper)
+                        }}
+                        isValid={touched.photo && !errors.photo}
+                        isInvalid={touched.photo && !!errors.photo}
+                      />
+                      <Form.File.Label>{fileName}</Form.File.Label>
+                      <Feedback type="invalid">{errors.photo}</Feedback>
+                    </Form.File>
+                  )}
+                />
+              </Form.Group>
 
-            <Form.Control.Feedback type="invalid">
-              {formik.errors.photo}
-            </Form.Control.Feedback>
-          </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label>Price</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="price"
+                  placeholder="Price"
+                  value={values.price}
+                  onChange={handleChange}
+                  isValid={touched.price && !errors.price}
+                  isInvalid={touched.price && !!errors.price}
+                />
 
-          <Form.Group as={Col}>
-            <Form.Label>Price</Form.Label>
-            <Form.Control
-              type="text"
-              name="price"
-              placeholder="Price"
-              value={formik.values.price}
-              onChange={formik.handleChange}
-              isValid={formik.touched.price && !formik.errors.price}
-              isInvalid={formik.touched.price && !!formik.errors.price}
-            />
+                <Form.Control.Feedback type="invalid">
+                  {errors.price}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Form.Row>
 
-            <Form.Control.Feedback type="invalid">
-              {formik.errors.price}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Form.Row>
+            <Form.Row>
+              <Form.Group
+                as={Col}
+                className="mb-3"
+                controlId={`exampleForm.ControlTextarea.${type}`}
+              >
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  name="description"
+                  placeholder="Description"
+                  value={values.description}
+                  onChange={handleChange}
+                  rows={3}
+                  style={{ resize: 'none' }}
+                  isValid={touched.description && !errors.description}
+                  isInvalid={touched.description && !!errors.description}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.description}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Form.Row>
 
-        <Form.Row>
-          <Form.Group
-            as={Col}
-            className="mb-3"
-            controlId={`exampleForm.ControlTextarea.${type}`}
-          >
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              as="textarea"
-              name="description"
-              placeholder="Description"
-              value={formik.values.description}
-              onChange={formik.handleChange}
-              rows={3}
-              style={{ resize: 'none' }}
-              isValid={formik.touched.description && !formik.errors.description}
-              isInvalid={
-                formik.touched.description && !!formik.errors.description
-              }
-            />
-            <Form.Control.Feedback type="invalid">
-              {formik.errors.description}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Form.Row>
-
-        <Form.Row>
-          <Button type="submit" className="ml-auto mr-2 mb-4">
-            Submit
-          </Button>
-        </Form.Row>
-      </Form>
+            <Form.Row>
+              <Button type="submit" className="ml-auto mr-2 mb-4">
+                Submit
+              </Button>
+            </Form.Row>
+          </Form>
+        )}
+      </Formik>
     </>
   )
 }
