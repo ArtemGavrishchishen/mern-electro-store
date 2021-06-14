@@ -15,7 +15,7 @@ router
 router
   .route('/')
   .post(
-    upload.single('image'),
+    upload.single('files'),
     Validator.baseTechnics,
     TechnicsController.createTechnic
   )

@@ -14,14 +14,14 @@ export const base = {
     brand: '',
     model: '',
     description: '',
-    photo: undefined,
+    files: undefined,
     price: '',
   },
   schema: {
     brand: Yup.string().required('Required'),
     model: Yup.string().required('Required'),
     description: Yup.string().required('Required'),
-    photo: Yup.array()
+    files: Yup.array()
       .required('A file is required')
       .of(
         Yup.object().test(

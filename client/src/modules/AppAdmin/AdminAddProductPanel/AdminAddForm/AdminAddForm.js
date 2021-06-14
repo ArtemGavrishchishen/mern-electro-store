@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { FieldArray, Formik } from 'formik'
 import * as Yup from 'yup'
 import Form from 'react-bootstrap/Form'
@@ -11,11 +12,13 @@ import FormTablets from './FormTablets'
 import FormNotebooks from './FormNotebooks'
 import FormTv from './FormTv'
 
+import { addTechnics } from '../../../../store/actions/technics.actions'
 import { base, types } from '../configs'
 
 const AdminAddForm = ({ type }) => {
   const [fileName, setFileName] = useState('Upload file')
   const inputRef = useRef()
+  const dispatch = useDispatch()
 
   const getFileArray = fileList => {
     return Array.from(fileList)
@@ -73,6 +76,7 @@ const AdminAddForm = ({ type }) => {
         validateOnMount
         onSubmit={(values, actions) => {
           console.log('Formik', values)
+          dispatch(addTechnics(values))
           actions.resetForm()
           setFileName('Upload file')
           handleDelete()
@@ -121,20 +125,20 @@ const AdminAddForm = ({ type }) => {
               <Form.Group as={Col} className="col-8">
                 <Form.Label>Photo</Form.Label>
                 <FieldArray
-                  name="photo"
+                  name="files"
                   render={arrayHelper => (
                     <Form.File id="formcheck-api-custom" custom>
                       <Form.File.Input
                         ref={inputRef}
-                        name="photo"
+                        name="files"
                         onChange={event => {
                           handleFileChange(event, values.fileInput, arrayHelper)
                         }}
-                        isValid={touched.photo && !errors.photo}
-                        isInvalid={touched.photo && !!errors.photo}
+                        isValid={touched.files && !errors.files}
+                        isInvalid={touched.files && !!errors.files}
                       />
                       <Form.File.Label>{fileName}</Form.File.Label>
-                      <Feedback type="invalid">{errors.photo}</Feedback>
+                      <Feedback type="invalid">{errors.files}</Feedback>
                     </Form.File>
                   )}
                 />

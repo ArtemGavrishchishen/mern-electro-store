@@ -22,6 +22,5 @@ exports.baseTechnics = [
   check('brand', 'Please enter brand').notEmpty(),
   check('model', 'Please enter model').notEmpty(),
   check('description', 'Please enter description').notEmpty(),
-  // check('photo', 'Please enter photo').notEmpty(),
   check('price', 'Please enter price').isInt().notEmpty(),
 ]
