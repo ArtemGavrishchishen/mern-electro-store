@@ -9,6 +9,7 @@ import { apiMiddleware } from './middleware/api.middleware'
 
 import { authReducers } from './reducers/auth.reducers'
 import { userReducers } from './reducers/user.reducers'
+import { technicsReducers } from './reducers/technics.reducers'
 import { cartReducers } from './reducers/cart.reducers'
 
 const persistConfig = {
@@ -21,6 +22,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   auth: authReducers,
   user: userReducers,
+  technics: technicsReducers,
   cart: cartReducers,
 })
 

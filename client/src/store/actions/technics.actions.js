@@ -2,7 +2,6 @@ import { apiAction } from '../middleware/api.middleware'
 import { asyncActionTypeCreators } from '../helpers'
 
 export const ADD_TECHNICS = asyncActionTypeCreators('ADD_TECHNICS')
-
 export const addTechnics = value => dispatch =>
   dispatch(
     apiAction({
@@ -12,6 +11,19 @@ export const addTechnics = value => dispatch =>
       data: value,
       onResponse: response => {
         console.log('apiAction_addTechnics_onResponse ', response)
+      },
+    })
+  )
+
+export const GET_TECHNICS = asyncActionTypeCreators('GET_TECHNICS')
+export const getTechnics = () => dispatch =>
+  dispatch(
+    apiAction({
+      url: '/technics',
+      method: 'GET',
+      label: GET_TECHNICS,
+      onResponse: response => {
+        console.log('apiAction_getTechnics_onResponse ', response)
       },
     })
   )

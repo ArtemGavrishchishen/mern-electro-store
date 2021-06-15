@@ -3,7 +3,18 @@ const get = require('lodash/get')
 
 const TechnicsService = require('../services/technics.service')
 
-exports.getTechnics = async (req, res) => {}
+exports.getTechnics = async (req, res) => {
+  try {
+    const technics = await TechnicsService.getTechnics()
+    if (technics) {
+      return res.status(200).send({ data: technics })
+    } else {
+      return res.status(400).send({ message: 'Bad request.' })
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 exports.createTechnic = async (req, res) => {
   try {

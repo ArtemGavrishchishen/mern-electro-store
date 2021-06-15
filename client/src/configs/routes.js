@@ -7,6 +7,7 @@ import routesPath from './routesPath'
 
 // === Pages
 import AdminPage from '../pages/AdminPage'
+import TechnicsPage from '../pages/TechnicsPage'
 import OrdersPage from '../pages/OrdersPage'
 
 // === Admin Panel
@@ -28,7 +29,7 @@ export const useRoutes = () => {
         </Route>
 
         <Route path={routesPath.TECHNICS} exact>
-          <div>TECHNICS_Page</div>
+          <TechnicsPage />
         </Route>
 
         <Route path={routesPath.CART} exact>

@@ -2,7 +2,15 @@ const needle = require('needle')
 
 const Technics = require('../models/Technics')
 
-exports.getTechnics = async () => {}
+exports.getTechnics = async () => {
+  try {
+    const technics = await Technics.find()
+
+    return technics
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 exports.createTechnic = async (data, img) => {
   try {
