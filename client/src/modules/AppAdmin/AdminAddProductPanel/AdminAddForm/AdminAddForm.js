@@ -13,7 +13,8 @@ import FormNotebooks from './FormNotebooks'
 import FormTv from './FormTv'
 
 import { addTechnics } from '../../../../store/actions/technics.actions'
-import { base, types } from '../configs'
+import { base } from '../configs'
+import { types } from '../../../../configs/category'
 
 const AdminAddForm = ({ type }) => {
   const [fileName, setFileName] = useState('Upload file')

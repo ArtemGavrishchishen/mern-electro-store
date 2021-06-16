@@ -1,26 +1,35 @@
-.btn {
-  flex-shrink: 0;
-  position: relative;
-  width: 45px;
-  height: 45px;
+.container {
+  width: 195px;
+  margin: 25px auto;
+  padding: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.2);
   cursor: pointer;
-  background-color: transparent;
-  padding: 8px 8px 6px 6px;
-  border-radius: 25%;
-  transition: background-color 0.2s linear;
 }
 
-.btn:hover,
-.btn:focus {
-  background-color: rgba(255, 255, 255, 0.5);
+.images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(128, 128, 128, 0.2);
+  height: 150px;
+  width: 175px;
+  margin: auto;
+  padding: 10px;
 }
 
-.btn svg {
-  fill: #ffffff;
+.images img {
+  vertical-align: middle;
+  max-width: 175px;
+  max-height: 150px;
+  padding: 10px 5px;
 }
 
-.badge {
-  position: absolute;
-  top: 2px;
-  right: 0px;
+.title {
+  color: rgba(128, 128, 128, 0.7);
+  transition: color 0.2s linear;
+  text-align: center;
+}
+
+.container:hover .title {
+  color: rgb(128, 128, 128);
 }

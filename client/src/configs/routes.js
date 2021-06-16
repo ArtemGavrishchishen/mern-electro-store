@@ -28,9 +28,13 @@ export const useRoutes = () => {
           <div>MAIN_Page</div>
         </Route>
 
-        <Route path={routesPath.TECHNICS} exact>
+        <Route path={routesPath.TECHNICS}>
           <TechnicsPage />
         </Route>
+
+        {/* <Route path={`${routesPath.TECHNICS}/:category`} exact>
+          <TechnicsPage />
+        </Route> */}
 
         <Route path={routesPath.CART} exact>
           <div>CART_Page</div>
@@ -56,9 +60,13 @@ export const useRoutes = () => {
           <div>MAIN_Page</div>
         </Route>
 
-        <Route path={routesPath.TECHNICS} exact>
-          <div>TECHNICS_Page</div>
+        <Route path={routesPath.TECHNICS}>
+          <TechnicsPage />
         </Route>
+
+        {/* <Route path={`${routesPath.TECHNICS}/:category`} exact>
+          <TechnicsPage />
+        </Route> */}
 
         <Route path={routesPath.CART} exact>
           <div>CART_Page</div>
@@ -79,9 +87,13 @@ export const useRoutes = () => {
         <div>MAIN_Page</div>
       </Route>
 
-      <Route path={routesPath.TECHNICS} exact>
-        <div>TECHNICS_Page</div>
+      <Route path={routesPath.TECHNICS}>
+        <TechnicsPage />
       </Route>
+
+      {/* <Route path={`${routesPath.TECHNICS}/:category`} exact>
+        <TechnicsPage />
+      </Route> */}
 
       <Route path={routesPath.CART} exact>
         <div>CART_Page</div>

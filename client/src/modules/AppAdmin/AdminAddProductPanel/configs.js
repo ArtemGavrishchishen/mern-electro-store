@@ -1,12 +1,5 @@
 import * as Yup from 'yup'
 
-export const types = Object.freeze({
-  MOBILE: 'mobile',
-  TABLETS: 'tablets',
-  NOTEBOOKS: 'notebooks',
-  TV: 'tv',
-})
-
 const FILE_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
 
 export const base = {

@@ -1,10 +1,11 @@
 .header {
   flex: 0 0 auto;
   background-color: #343a40;
+  margin-bottom: 10px;
 }
 @media (max-width: 1023px) {
   .header {
-    min-height: 114px;
+    min-height: 110px;
   }
 }
 

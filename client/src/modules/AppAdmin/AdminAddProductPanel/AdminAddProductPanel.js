@@ -5,7 +5,7 @@ import Tab from 'react-bootstrap/Tab'
 
 import AdminAddForm from './AdminAddForm'
 
-import { types } from './configs'
+import { types } from '../../../configs/category'
 import styles from './AdminAddProductPanel.module.css'
 
 const AdminAddProductPanel = () => {
@@ -19,7 +19,7 @@ const AdminAddProductPanel = () => {
     { value: types.TABLETS, label: 'Tablets' },
     { value: types.NOTEBOOKS, label: 'Notebooks' },
     { value: types.TV, label: 'TV' },
-    { value: '', label: 'Other' },
+    { value: types.OTHER, label: 'Other' },
   ]
 
   return (
