@@ -16,10 +16,10 @@ export const addTechnics = value => dispatch =>
   )
 
 export const GET_TECHNICS = asyncActionTypeCreators('GET_TECHNICS')
-export const getTechnics = () => dispatch =>
+export const getTechnics = category => dispatch =>
   dispatch(
     apiAction({
-      url: '/technics',
+      url: category ? `/technics/${category}` : '/technics',
       method: 'GET',
       label: GET_TECHNICS,
       onResponse: response => {

@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import Table from 'react-bootstrap/Table'
 import Image from 'react-bootstrap/Image'
-
-import { toCurrency } from '../../../helpers'
 import { useSelector, useDispatch } from 'react-redux'
 
+import { toCurrency } from '../../../helpers'
 import { getTechnics } from '../../../store/actions/technics.actions'
 
 const AdminTechnicsPanel = () => {

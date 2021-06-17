@@ -6,6 +6,9 @@ const Validator = require('../enhancers/validator')
 const TechnicsController = require('../controllers/technics.controller')
 
 const router = Router()
+
+router.route('/:category').get(TechnicsController.getTechnics)
+
 router
   .route('/')
   .get(TechnicsController.getTechnics)

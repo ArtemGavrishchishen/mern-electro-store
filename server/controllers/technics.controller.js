@@ -5,7 +5,8 @@ const TechnicsService = require('../services/technics.service')
 
 exports.getTechnics = async (req, res) => {
   try {
-    const technics = await TechnicsService.getTechnics()
+    const category = get(req, 'params.category', null)
+    const technics = await TechnicsService.getTechnics(category)
     if (technics) {
       return res.status(200).send({ data: technics })
     } else {

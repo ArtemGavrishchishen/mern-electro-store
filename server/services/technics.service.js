@@ -2,9 +2,10 @@ const needle = require('needle')
 
 const Technics = require('../models/Technics')
 
-exports.getTechnics = async () => {
+exports.getTechnics = async category => {
   try {
-    const technics = await Technics.find()
+    const params = category ? { type: category } : {}
+    const technics = await Technics.find({ ...params })
 
     return technics
   } catch (error) {

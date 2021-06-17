@@ -14,7 +14,7 @@ import routesPath from '../../configs/routesPath'
 import { types } from '../../configs/category'
 import styles from './AppCategory.module.css'
 
-const AppCategory = ({ match }) => {
+const AppCategory = () => {
   const history = useHistory()
 
   const categotyImg = [
