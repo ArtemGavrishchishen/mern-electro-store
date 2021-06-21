@@ -1,5 +1,18 @@
 .footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   flex: 0 0 auto;
-  background-color: #343a40;
   color: rgba(255, 255, 255, 0.5);
+}
+
+.top {
+  min-height: 70px;
+  background-color: #6c757d;
+}
+
+.bottom {
+  min-height: 30px;
+  text-align: end;
+  background-color: #343a40;
 }

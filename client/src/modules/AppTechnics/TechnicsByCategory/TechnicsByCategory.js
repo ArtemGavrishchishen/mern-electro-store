@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import ReactPaginate from 'react-paginate'
 
+import TechnicsSettingsTop from '../TechnicsSettingsTop'
 import TechnicsSidebar from '../TechnicsSidebar'
 import TachnicsItem from '../TachnicsItem'
 
@@ -18,6 +20,11 @@ const TechnicsByCategory = ({ category }) => {
 
   return (
     <>
+      <TabletAndDesktop>
+        <div className={styles.top}>
+          <TechnicsSettingsTop />
+        </div>
+      </TabletAndDesktop>
       <div className={styles.container}>
         <Mobile>
           <div className={styles.grid}>
@@ -30,7 +37,9 @@ const TechnicsByCategory = ({ category }) => {
         </Mobile>
         <TabletAndDesktop>
           <div className={styles.sidebar}>
-            <TechnicsSidebar />
+            <div className={styles.sidebarContent}>
+              <TechnicsSidebar />
+            </div>
           </div>
           <div className={styles.grid}>
             <ul className={styles.list}>
@@ -38,6 +47,17 @@ const TechnicsByCategory = ({ category }) => {
                 <TachnicsItem item={item} key={item._id} />
               ))}
             </ul>
+            <ReactPaginate
+              initialPage={0}
+              containerClassName={styles.paginate}
+              pageClassName={styles.items}
+              breakClassName={styles.break}
+              activeClassName={styles.active}
+              pageCount={45}
+              pageRangeDisplayed={3}
+              marginPagesDisplayed={2}
+              onPageChange={p => console.log(p)}
+            />
           </div>
         </TabletAndDesktop>
       </div>

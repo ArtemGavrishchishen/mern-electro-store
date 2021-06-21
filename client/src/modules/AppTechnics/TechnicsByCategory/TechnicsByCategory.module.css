@@ -1,3 +1,7 @@
+.top {
+  display: block;
+}
+
 .container {
   display: flex;
   width: 100%;
@@ -6,14 +10,20 @@
 .sidebar {
   flex-shrink: 0;
   width: 250px;
-  outline: 2px solid red;
-  margin: 0 10px;
+  margin: 0 0 0 10px;
   padding: 5px;
+}
+
+.sidebarContent {
+  height: 100%;
+  border-top: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+  border-right: 1px solid #f4f4f4;
 }
 
 .grid {
   flex: 1 auto;
-  margin: 0 10px;
+  margin: 0 10px 0 0;
   padding: 5px;
 }
 
@@ -23,8 +33,43 @@
   align-items: center;
   justify-content: flex-start;
   list-style: none;
-  border-top: 1px solid #f4f4f4;
   border-left: 1px solid #f4f4f4;
   margin: 0;
   padding: 0;
+}
+
+.paginate {
+  display: flex;
+  max-width: 600px;
+  list-style: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.paginate li {
+  min-width: 40px;
+  min-height: 40px;
+  border: 1px solid #f4f4f4;
+  margin: 2px;
+  text-align: center;
+  padding: 7px;
+  transition: border 0.2s linear;
+}
+
+.paginate li:last-child {
+  margin-left: auto;
+}
+
+.paginate li:first-child {
+  margin-right: auto;
+}
+
+.paginate li:hover {
+  border: 1px solid rgba(108, 117, 125, 0.5);
+}
+
+.paginate .active {
+  background-color: #6c757d;
+  color: #ffffff;
 }
