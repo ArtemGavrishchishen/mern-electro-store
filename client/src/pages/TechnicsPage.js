@@ -19,7 +19,7 @@ const TechnicsPage = () => {
     }
   }, [match])
 
-  if (category === null) {
+  if (!category) {
     return <TechnicsMain />
   } else {
     return <TechnicsByCategory category={category} />

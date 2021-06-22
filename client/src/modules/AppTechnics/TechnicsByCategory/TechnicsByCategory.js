@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ReactPaginate from 'react-paginate'
 
+import AppBreadcrumb from '../../../components/AppBreadcrumb'
 import TechnicsSettingsTop from '../TechnicsSettingsTop'
 import TechnicsSidebar from '../TechnicsSidebar'
 import TachnicsItem from '../TachnicsItem'
@@ -21,6 +22,7 @@ const TechnicsByCategory = ({ category }) => {
   return (
     <>
       <TabletAndDesktop>
+        <AppBreadcrumb />
         <div className={styles.top}>
           <TechnicsSettingsTop />
         </div>
@@ -53,9 +55,9 @@ const TechnicsByCategory = ({ category }) => {
               pageClassName={styles.items}
               breakClassName={styles.break}
               activeClassName={styles.active}
-              pageCount={45}
+              pageCount={450}
               pageRangeDisplayed={3}
-              marginPagesDisplayed={2}
+              marginPagesDisplayed={1}
               onPageChange={p => console.log(p)}
             />
           </div>
