@@ -14,7 +14,7 @@ const AppSlider = () => {
   }
 
   return (
-    <Container fluid>
+    <>
       <Row>
         <Col>
           <Carousel activeIndex={index} onSelect={handleSelect}>
@@ -53,7 +53,7 @@ const AppSlider = () => {
           </Carousel>
         </Col>
       </Row>
-    </Container>
+    </>
   )
 }
 

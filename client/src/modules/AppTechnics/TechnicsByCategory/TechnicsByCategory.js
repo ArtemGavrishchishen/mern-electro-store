@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ReactPaginate from 'react-paginate'
 
-import AppBreadcrumb from '../../../components/AppBreadcrumb'
 import TechnicsSettingsTop from '../TechnicsSettingsTop'
 import TechnicsSidebar from '../TechnicsSidebar'
 import TachnicsItem from '../TachnicsItem'
@@ -22,7 +21,6 @@ const TechnicsByCategory = ({ category }) => {
   return (
     <>
       <TabletAndDesktop>
-        <AppBreadcrumb />
         <div className={styles.top}>
           <TechnicsSettingsTop />
         </div>
@@ -32,7 +30,7 @@ const TechnicsByCategory = ({ category }) => {
           <div className={styles.grid}>
             <ul className={styles.list}>
               {technics.map(item => (
-                <TachnicsItem item={item} key={item._id} />
+                <TachnicsItem item={item} category={category} key={item._id} />
               ))}
             </ul>
           </div>
@@ -46,7 +44,7 @@ const TechnicsByCategory = ({ category }) => {
           <div className={styles.grid}>
             <ul className={styles.list}>
               {technics.map(item => (
-                <TachnicsItem item={item} key={item._id} />
+                <TachnicsItem item={item} category={category} key={item._id} />
               ))}
             </ul>
             <ReactPaginate

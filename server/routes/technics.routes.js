@@ -7,10 +7,10 @@ const TechnicsController = require('../controllers/technics.controller')
 
 const router = Router()
 
-router.route('/:category').get(TechnicsController.getTechnics)
+// router.route('/:category?/:id?').get(TechnicsController.getTechnics)
 
 router
-  .route('/')
+  .route('/:category?/:id?')
   .get(TechnicsController.getTechnics)
   .put(TechnicsController.updateTechnic)
   .delete(TechnicsController.deleteTechnic)

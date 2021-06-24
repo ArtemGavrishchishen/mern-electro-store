@@ -2,13 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
-const AppBreadcrumb = () => {
+const AppBreadcrumb = ({ breadcrumb }) => {
   return (
     <Breadcrumb>
-      <Breadcrumb.Item linkProps={{ to: '/technics' }} linkAs={Link}>
-        Technics
-      </Breadcrumb.Item>
-      <Breadcrumb.Item active>Items</Breadcrumb.Item>
+      {breadcrumb.map((item, index, arr) => (
+        <Breadcrumb.Item
+          key={item.name}
+          linkProps={{ to: item.route }}
+          linkAs={Link}
+          active={index + 1 === arr.length}
+        >
+          {item.name}
+        </Breadcrumb.Item>
+      ))}
     </Breadcrumb>
   )
 }

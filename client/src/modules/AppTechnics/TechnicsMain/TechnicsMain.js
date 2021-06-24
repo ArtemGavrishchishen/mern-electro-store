@@ -9,7 +9,9 @@ const TechnicsMain = () => {
   return (
     <Container fluid>
       <Row>
-        <AppSlider />
+        <Container>
+          <AppSlider />
+        </Container>
       </Row>
       <Row>
         <AppCategory />
