@@ -7,8 +7,6 @@ const TechnicsController = require('../controllers/technics.controller')
 
 const router = Router()
 
-// router.route('/:category?/:id?').get(TechnicsController.getTechnics)
-
 router
   .route('/:category?/:id?')
   .get(TechnicsController.getTechnics)

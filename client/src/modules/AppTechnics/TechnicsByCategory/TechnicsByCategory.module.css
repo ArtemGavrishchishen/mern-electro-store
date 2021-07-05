@@ -36,6 +36,7 @@
   border-left: 1px solid #f4f4f4;
   margin: 0;
   padding: 0;
+  margin-bottom: 25px;
 }
 
 .paginate {
@@ -49,13 +50,23 @@
 }
 
 .paginate li {
-  min-width: 40px;
-  min-height: 40px;
   border: 1px solid #f4f4f4;
   margin: 2px;
+  padding: 4px;
   text-align: center;
-  padding: 7px;
   transition: border 0.2s linear;
+}
+
+.paginate li a {
+  display: block;
+  min-width: 32px;
+  min-height: 32px;
+  line-height: 2;
+}
+
+.paginate li:last-child,
+.paginate li:first-child {
+  width: 75px;
 }
 
 .paginate li:last-child {

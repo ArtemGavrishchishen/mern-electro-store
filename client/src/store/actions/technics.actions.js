@@ -27,3 +27,14 @@ export const getTechnics = category => dispatch =>
       },
     })
   )
+
+export const GET_TECHNICS_BY_ID = asyncActionTypeCreators('GET_TECHNICS_BY_ID')
+export const getTechnicsById = (category, id, onResponse) => dispatch =>
+  dispatch(
+    apiAction({
+      url: `/technics/${category}/${id}`,
+      method: 'GET',
+      label: GET_TECHNICS_BY_ID,
+      onResponse: onResponse,
+    })
+  )

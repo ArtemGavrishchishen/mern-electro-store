@@ -6,6 +6,7 @@ import get from 'lodash/get'
 import routesPath from './routesPath'
 
 // === Pages
+import HomePage from '../pages/HomePage'
 import AdminPage from '../pages/AdminPage'
 import TechnicsPage from '../pages/TechnicsPage'
 import OrdersPage from '../pages/OrdersPage'
@@ -25,7 +26,7 @@ export const useRoutes = () => {
     return (
       <Switch>
         <Route path={routesPath.MAIN} exact>
-          <div>MAIN_Page</div>
+          <HomePage />
         </Route>
 
         <Route path={routesPath.TECHNICS}>
@@ -57,7 +58,7 @@ export const useRoutes = () => {
     return (
       <Switch>
         <Route path={routesPath.MAIN} exact>
-          <div>MAIN_Page</div>
+          <HomePage />
         </Route>
 
         <Route path={routesPath.TECHNICS}>
@@ -84,7 +85,7 @@ export const useRoutes = () => {
   return (
     <Switch>
       <Route path={routesPath.MAIN} exact>
-        <div>MAIN_Page</div>
+        <HomePage />
       </Route>
 
       <Route path={routesPath.TECHNICS}>

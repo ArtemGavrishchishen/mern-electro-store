@@ -33,12 +33,14 @@
   justify-content: center;
 }
 
-.tablet {
+.tablet,
+.desktop {
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   z-index: 1030;
+  background-color: #343a40;
 }
 
 .tablet .search {

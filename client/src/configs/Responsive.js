@@ -31,3 +31,14 @@ export const Mobile = ({ children }) => {
     return children
   }
 }
+
+export const isMobile = () => {
+  const isDesktop = useMediaQuery({ minWidth: 1024 })
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 })
+
+  if (isDesktop || isTablet) {
+    return false
+  } else {
+    return true
+  }
+}

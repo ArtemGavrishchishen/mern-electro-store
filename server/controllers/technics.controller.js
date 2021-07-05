@@ -7,8 +7,8 @@ exports.getTechnics = async (req, res) => {
   try {
     const category = get(req, 'params.category', null)
     const id = get(req, 'params.id', null)
-    console.log(get(req, 'params', null))
-    const technics = await TechnicsService.getTechnics(category)
+
+    const technics = await TechnicsService.getTechnics(category, id)
     if (technics) {
       return res.status(200).send({ data: technics })
     } else {
