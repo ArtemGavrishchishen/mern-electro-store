@@ -1,0 +1,29 @@
+.about {
+  width: 100%;
+  padding-left: 10px;
+}
+
+@media (min-width: 768px) {
+  .about {
+    width: 40%;
+  }
+}
+
+@media (min-width: 992px) {
+  .about {
+    width: 35%;
+  }
+}
+
+.trade {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 5px;
+  border: 1px solid #f4f4f4;
+}
+
+.btn {
+  margin: auto;
+  padding: 6px 30px !important;
+}
