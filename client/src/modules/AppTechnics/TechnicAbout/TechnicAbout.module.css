@@ -17,13 +17,91 @@
 
 .trade {
   display: flex;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   padding: 10px 5px;
   border: 1px solid #f4f4f4;
+  margin-bottom: 25px;
+}
+
+@media (min-width: 768px) {
+  .trade {
+    flex-direction: row;
+  }
+}
+
+.price {
+  margin-left: 10px;
 }
 
 .btn {
+  display: flex !important;
+  align-items: center;
   margin: auto;
-  padding: 6px 30px !important;
+  padding: 3px 25px !important;
+}
+
+@media (max-width: 767px) {
+  .cont {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 3px;
+  }
+  .btn {
+    width: 75%;
+    justify-content: center;
+  }
+}
+
+.btn svg {
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  padding: 3px 2px;
+  padding-right: 4px;
+  margin-right: 10px;
+  fill: #ffffff;
+  border-radius: 25%;
+}
+
+.like svg {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 3px 2px;
+  fill: rgba(52, 58, 64, 0.5);
+  transition: fill 0.2s linear;
+  border-radius: 25%;
+}
+
+.like:hover svg {
+  fill: #000000;
+}
+
+.check svg {
+  fill: #ffaa00;
+}
+
+.payment,
+.warranty,
+.delivery {
+  width: 100%;
+  border: 1px solid #f4f4f4;
+  margin-bottom: 10px;
+}
+
+.payment .title,
+.warranty .title,
+.delivery .title {
+  padding: 5px 10px;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.payment .body,
+.warranty .body,
+.delivery .body {
+  padding: 5px 10px;
 }
