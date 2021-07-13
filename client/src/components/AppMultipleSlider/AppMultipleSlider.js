@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import Slider from 'react-slick'
 import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
@@ -10,6 +11,8 @@ import {
   Tablet,
   Desktop,
 } from '../../configs/Responsive'
+import routesPath from '../../configs/routesPath'
+
 import styles from './AppMultipleSlider.module.css'
 
 function SampleArrow(props) {
@@ -29,10 +32,19 @@ function SampleArrow(props) {
 }
 
 const TechnicsItem = ({ technic = {} }) => {
+  const history = useHistory()
+
+  const handleClick = (category, id) => {
+    history.push(`${routesPath.TECHNICS}/${category}/${id}`)
+  }
+
   return (
     <div className={styles.item}>
       <div className={styles.card}>
-        <div className={styles.image} onClick={() => console.log(technic._id)}>
+        <div
+          className={styles.image}
+          onClick={() => handleClick(technic.type, technic._id)}
+        >
           <Image src={technic.photo[0].thumbUrl} alt={technic.brand} fluid />
         </div>
         <div className={styles.model}>
