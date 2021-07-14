@@ -17,10 +17,16 @@
 
 .item {
   max-width: 175px;
-  max-height: 215px;
+  max-height: 190px;
   border: 1px solid rgba(128, 128, 128, 0.2);
   border-left: none;
   overflow: hidden;
+}
+
+.item .model {
+  text-align: start;
+  font-size: 12px;
+  color: #6c757d;
 }
 
 .image {

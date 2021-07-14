@@ -21,6 +21,10 @@
 
 .badge {
   position: absolute;
-  top: 2px;
-  right: 0px;
+  top: -2px;
+  right: -8px;
+  border-radius: 50% !important;
+  height: 25px;
+  width: 25px;
+  line-height: 19px !important;
 }

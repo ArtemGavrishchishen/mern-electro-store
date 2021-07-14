@@ -80,7 +80,7 @@ const TechnicsPage = () => {
     return (
       <>
         <AppBreadcrumb breadcrumb={breadcrumb} />
-        <TechnicsById technic={technicsById} />
+        <TechnicsById technic={technicsById} dispatch={dispatch} />
       </>
     )
   }

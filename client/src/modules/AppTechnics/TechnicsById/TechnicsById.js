@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import get from 'lodash/get'
 import Container from 'react-bootstrap/Container'
 
+import { addToCart } from '../../../store/actions/cart.actions'
 import { useLocalStorage } from '../../../helpers'
 import { TabletAndDesktop, Mobile } from '../../../configs/Responsive'
 import TechnicPhoto from '../TechnicPhoto'
@@ -10,7 +11,7 @@ import AppViewedTechnics from '../../../components/AppViewedTechnics'
 
 import styles from './TechnicsById.module.css'
 
-const TechnicsById = ({ technic }) => {
+const TechnicsById = ({ technic, dispatch }) => {
   if (!technic) return null
 
   const { setItem, removeItem, getItem } = useLocalStorage()
@@ -52,15 +53,22 @@ const TechnicsById = ({ technic }) => {
       <TabletAndDesktop>
         <div className={styles.technic}>
           <TechnicPhoto photo={get(technic, 'photo', [])} />
-          <TechnicAbout price={get(technic, 'price', 0)} />
+          <TechnicAbout
+            price={get(technic, 'price', 0)}
+            handlerBuy={() => dispatch(addToCart(technic._id))}
+          />
         </div>
       </TabletAndDesktop>
       <Mobile>
         <TechnicPhoto photo={get(technic, 'photo', [])} />
-        <TechnicAbout price={get(technic, 'price', 0)} />
+        <TechnicAbout
+          price={get(technic, 'price', 0)}
+          handlerBuy={() => dispatch(addToCart(technic._id))}
+        />
       </Mobile>
-
-      <AppViewedTechnics />
+      <div className={styles.viewed}>
+        <AppViewedTechnics />
+      </div>
     </Container>
   )
 }

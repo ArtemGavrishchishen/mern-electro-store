@@ -30,7 +30,12 @@ const TechnicsByCategory = ({ category }) => {
           <div className={styles.grid}>
             <ul className={styles.list}>
               {technics.map(item => (
-                <TachnicsItem item={item} category={category} key={item._id} />
+                <TachnicsItem
+                  dispatch={dispatch}
+                  item={item}
+                  category={category}
+                  key={item._id}
+                />
               ))}
             </ul>
           </div>
@@ -44,7 +49,12 @@ const TechnicsByCategory = ({ category }) => {
           <div className={styles.grid}>
             <ul className={styles.list}>
               {technics.map(item => (
-                <TachnicsItem item={item} category={category} key={item._id} />
+                <TachnicsItem
+                  dispatch={dispatch}
+                  item={item}
+                  category={category}
+                  key={item._id}
+                />
               ))}
             </ul>
             <ReactPaginate

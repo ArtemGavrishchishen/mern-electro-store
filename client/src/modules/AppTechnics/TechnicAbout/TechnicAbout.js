@@ -8,13 +8,13 @@ import { Mobile, TabletAndDesktop } from '../../../configs/Responsive'
 import { toCurrency } from '../../../helpers'
 import styles from './TechnicAbout.module.css'
 
-const TechnicAbout = ({ price, isCheck = false }) => {
+const TechnicAbout = ({ price, isCheck = false, handlerBuy }) => {
   return (
     <div className={styles.about}>
       <div className={styles.trade}>
         <TabletAndDesktop>
           <div className={styles.price}>{toCurrency(price)}</div>
-          <Button className={styles.btn} variant="success">
+          <Button className={styles.btn} variant="success" onClick={handlerBuy}>
             <Cart />
             <span>Buy</span>
           </Button>
@@ -30,7 +30,7 @@ const TechnicAbout = ({ price, isCheck = false }) => {
               <Like />
             </div>
           </div>
-          <Button className={styles.btn} variant="success">
+          <Button className={styles.btn} variant="success" onClick={handlerBuy}>
             <Cart />
             <span>Buy</span>
           </Button>

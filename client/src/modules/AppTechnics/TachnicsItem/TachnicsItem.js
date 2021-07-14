@@ -3,11 +3,12 @@ import { useHistory } from 'react-router-dom'
 import Image from 'react-bootstrap/Image'
 
 import { ReactComponent as Cart } from './assets/cart.svg'
+import { addToCart } from '../../../store/actions/cart.actions'
 import { toCurrency } from '../../../helpers'
 import routesPath from '../../../configs/routesPath'
 import styles from './TachnicsItem.module.css'
 
-const TachnicsItem = ({ item, category }) => {
+const TachnicsItem = ({ item, category, dispatch }) => {
   const history = useHistory()
 
   const handleClick = id => {
@@ -28,7 +29,7 @@ const TachnicsItem = ({ item, category }) => {
           <span>{toCurrency(item.price)} </span>
           <span
             className={styles.btn}
-            onClick={() => console.log(`buy goods ${item._id}`)}
+            onClick={() => dispatch(addToCart(item._id))}
           >
             <Cart />
           </span>

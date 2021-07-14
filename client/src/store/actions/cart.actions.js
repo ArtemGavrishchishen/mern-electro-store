@@ -1,5 +1,24 @@
+import { apiAction } from '../middleware/api.middleware'
+import { asyncActionTypeCreators } from '../helpers'
+
+export const GET_TECHNICS_BY_CART = asyncActionTypeCreators(
+  'GET_TECHNICS_BY_CART'
+)
+export const getTechnicsByCart = (ids, onResponse) => dispatch =>
+  dispatch(
+    apiAction({
+      url: '/cart',
+      method: 'GET',
+      data: ids,
+      label: GET_TECHNICS_BY_CART,
+      onResponse: response => {
+        onResponse(response.data)
+      },
+    })
+  )
+
 export const ADD_TO_CART = 'ADD_TO_CART'
-export const addToCart = id => async dispatch => {
+export const addToCart = id => dispatch => {
   dispatch({
     type: ADD_TO_CART,
     payload: id,

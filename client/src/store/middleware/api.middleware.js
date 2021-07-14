@@ -44,7 +44,7 @@ export const apiMiddleware =
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     }
-    console.log('api', data)
+
     const dataOrParams = ['GET', 'DELETE'].includes(method) ? 'params' : 'data'
     try {
       const reqParams = {
