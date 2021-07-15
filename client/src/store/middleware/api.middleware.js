@@ -29,7 +29,7 @@ export const apiMiddleware =
   ({ dispatch, getState }) =>
   next =>
   async action => {
-    next(action)
+    // next(action)
 
     if (action.type !== API) return next(action)
     const store = getState()

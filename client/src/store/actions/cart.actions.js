@@ -4,7 +4,7 @@ import { asyncActionTypeCreators } from '../helpers'
 export const GET_TECHNICS_BY_CART = asyncActionTypeCreators(
   'GET_TECHNICS_BY_CART'
 )
-export const getTechnicsByCart = (ids, onResponse) => dispatch =>
+export const getTechnicsByCart = (ids, onResponse) => async dispatch =>
   dispatch(
     apiAction({
       url: '/cart',
@@ -26,7 +26,7 @@ export const addToCart = id => dispatch => {
 }
 
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
-export const removeFromCart = id => async dispatch => {
+export const removeFromCart = id => dispatch => {
   dispatch({
     type: REMOVE_FROM_CART,
     payload: id,
@@ -34,7 +34,7 @@ export const removeFromCart = id => async dispatch => {
 }
 
 export const INCREMENT_ITEM_FROM_CART = 'INCREMENT_ITEM_FROM_CART'
-export const incrementItemFromCart = id => async dispatch => {
+export const incrementItemFromCart = id => dispatch => {
   dispatch({
     type: INCREMENT_ITEM_FROM_CART,
     payload: id,
@@ -42,7 +42,7 @@ export const incrementItemFromCart = id => async dispatch => {
 }
 
 export const DECREMENT_ITEM_FROM_CART = 'DECREMENT_ITEM_FROM_CART'
-export const decrementItemFromCart = id => async dispatch => {
+export const decrementItemFromCart = id => dispatch => {
   dispatch({
     type: DECREMENT_ITEM_FROM_CART,
     payload: id,

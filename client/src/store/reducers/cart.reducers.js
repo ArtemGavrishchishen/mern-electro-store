@@ -1,6 +1,11 @@
 import omit from 'lodash/omit'
 
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cart.actions'
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  INCREMENT_ITEM_FROM_CART,
+  DECREMENT_ITEM_FROM_CART,
+} from '../actions/cart.actions'
 
 const initialState = {
   ids: [],
@@ -18,6 +23,22 @@ const handlers = {
     ...state,
     ids: [...state.ids.filter(id => id !== payload)],
     amount: omit(state.amount, [payload]),
+  }),
+
+  [INCREMENT_ITEM_FROM_CART]: (state, payload) => ({
+    ...state,
+    amount: {
+      ...state.amount,
+      [payload]: state.amount[payload] >= 99 ? 99 : state.amount[payload] + 1,
+    },
+  }),
+
+  [DECREMENT_ITEM_FROM_CART]: (state, payload) => ({
+    ...state,
+    amount: {
+      ...state.amount,
+      [payload]: state.amount[payload] <= 1 ? 1 : state.amount[payload] - 1,
+    },
   }),
 
   DEFAULT: state => state,

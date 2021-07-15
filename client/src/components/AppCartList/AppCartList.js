@@ -1,13 +1,87 @@
 import React from 'react'
+import Image from 'react-bootstrap/Image'
+import Button from 'react-bootstrap/Button'
 
+import { ReactComponent as Plus } from './assets/plus.svg'
+import { ReactComponent as Remove } from './assets/remove.svg'
+import { ReactComponent as TrashBin } from './assets/trash-bin.svg'
+
+import { toCurrency } from '../../helpers'
 import styles from './AppCartList.module.css'
 
-const AppCartList = ({ technics }) => {
+const AppCartList = ({
+  dispatch,
+  technics,
+  amount,
+  remove,
+  incrementItem,
+  decrementItem,
+}) => {
+  const handlerChange = count => {
+    if (count && count >= 1 && count <= 99) {
+      console.log('count', count)
+    }
+  }
+
   return (
     <div className={styles.list}>
-      {technics.map(item => (
-        <div key={item._id} className={styles.item}>
-          {item._id}
+      {technics.map(technic => (
+        <div key={technic._id} className={styles.item}>
+          <div className={styles.body}>
+            <div className={styles.image}>
+              <Image
+                src={technic.photo[0].thumbUrl}
+                alt={technic.brand}
+                fluid
+              />
+            </div>
+
+            <div className={styles.cont}>
+              <div className={styles.title}>
+                {`${technic.brand} - ${technic.model}`}
+              </div>
+
+              <div className={styles.nav}>
+                <div className={styles.counter}>
+                  <div>
+                    <button
+                      type="button"
+                      className={styles.btn}
+                      onClick={() => dispatch(decrementItem(technic._id))}
+                    >
+                      <Remove />
+                    </button>
+                    <input
+                      className={styles.number}
+                      type="number"
+                      min={1}
+                      max={99}
+                      value={amount[technic._id] ? amount[technic._id] : 1}
+                      onChange={e => handlerChange(e.target.value)}
+                    />
+                    <button
+                      type="button"
+                      className={styles.btn}
+                      onClick={() => dispatch(incrementItem(technic._id))}
+                    >
+                      <Plus />
+                    </button>
+                  </div>
+                  <div className={styles.price}>
+                    {toCurrency(technic.price * amount[technic._id])}
+                  </div>
+                </div>
+                <Button
+                  className={styles.remove}
+                  variant="danger"
+                  onClick={() => dispatch(remove(technic._id))}
+                >
+                  <TrashBin />
+                  <span>Remove</span>
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       ))}
     </div>
