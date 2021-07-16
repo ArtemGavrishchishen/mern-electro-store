@@ -37,10 +37,18 @@ const AppCartList = ({
             </div>
 
             <div className={styles.cont}>
-              <div className={styles.title}>
-                {`${technic.brand} - ${technic.model}`}
+              <div className={styles.contTop}>
+                <div className={styles.title}>
+                  {`${technic.brand} - ${technic.model}`}
+                </div>
+                <Button
+                  className={styles.remove}
+                  variant="danger"
+                  onClick={() => dispatch(remove(technic._id))}
+                >
+                  <TrashBin />
+                </Button>
               </div>
-
               <div className={styles.nav}>
                 <div className={styles.counter}>
                   <div>
@@ -67,18 +75,10 @@ const AppCartList = ({
                       <Plus />
                     </button>
                   </div>
-                  <div className={styles.price}>
-                    {toCurrency(technic.price * amount[technic._id])}
-                  </div>
                 </div>
-                <Button
-                  className={styles.remove}
-                  variant="danger"
-                  onClick={() => dispatch(remove(technic._id))}
-                >
-                  <TrashBin />
-                  <span>Remove</span>
-                </Button>
+                <div className={styles.price}>
+                  {toCurrency(technic.price * amount[technic._id])}
+                </div>
               </div>
             </div>
           </div>

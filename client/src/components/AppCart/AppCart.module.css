@@ -28,3 +28,19 @@
   width: 25px;
   line-height: 19px !important;
 }
+
+.footer {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.total {
+  margin: auto;
+  font-weight: 600;
+}
+
+.buy {
+  width: 40%;
+  padding: 3px 15px !important;
+}
