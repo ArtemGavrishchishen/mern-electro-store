@@ -16,10 +16,11 @@ const AppCartList = ({
   remove,
   incrementItem,
   decrementItem,
+  setCountItem,
 }) => {
-  const handlerChange = count => {
+  const handlerChange = (id, count) => {
     if (count && count >= 1 && count <= 99) {
-      console.log('count', count)
+      dispatch(setCountItem(id, count))
     }
   }
 
@@ -65,7 +66,7 @@ const AppCartList = ({
                       min={1}
                       max={99}
                       value={amount[technic._id] ? amount[technic._id] : 1}
-                      onChange={e => handlerChange(e.target.value)}
+                      onChange={e => handlerChange(technic._id, e.target.value)}
                     />
                     <button
                       type="button"

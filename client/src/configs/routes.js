@@ -9,6 +9,7 @@ import routesPath from './routesPath'
 import HomePage from '../pages/HomePage'
 import AdminPage from '../pages/AdminPage'
 import TechnicsPage from '../pages/TechnicsPage'
+import CheckoutPage from '../pages/CheckoutPage'
 import OrdersPage from '../pages/OrdersPage'
 
 // === Admin Panel
@@ -33,12 +34,8 @@ export const useRoutes = () => {
           <TechnicsPage />
         </Route>
 
-        {/* <Route path={`${routesPath.TECHNICS}/:category`} exact>
-          <TechnicsPage />
-        </Route> */}
-
-        <Route path={routesPath.CART} exact>
-          <div>CART_Page</div>
+        <Route path={routesPath.CHECKOUT} exact>
+          <CheckoutPage />
         </Route>
 
         <Route path={routesPath.ORDERS} exact>
@@ -65,12 +62,8 @@ export const useRoutes = () => {
           <TechnicsPage />
         </Route>
 
-        {/* <Route path={`${routesPath.TECHNICS}/:category`} exact>
-          <TechnicsPage />
-        </Route> */}
-
-        <Route path={routesPath.CART} exact>
-          <div>CART_Page</div>
+        <Route path={routesPath.CHECKOUT} exact>
+          <CheckoutPage />
         </Route>
 
         <Route path={routesPath.ORDERS} exact>
@@ -92,12 +85,8 @@ export const useRoutes = () => {
         <TechnicsPage />
       </Route>
 
-      {/* <Route path={`${routesPath.TECHNICS}/:category`} exact>
-        <TechnicsPage />
-      </Route> */}
-
-      <Route path={routesPath.CART} exact>
-        <div>CART_Page</div>
+      <Route path={routesPath.CHECKOUT} exact>
+        <CheckoutPage />
       </Route>
 
       <Redirect to={routesPath.MAIN} />

@@ -5,6 +5,7 @@ import {
   REMOVE_FROM_CART,
   INCREMENT_ITEM_FROM_CART,
   DECREMENT_ITEM_FROM_CART,
+  SET_COUNT_ITEM_FROM_CART,
 } from '../actions/cart.actions'
 
 const initialState = {
@@ -38,6 +39,17 @@ const handlers = {
     amount: {
       ...state.amount,
       [payload]: state.amount[payload] <= 1 ? 1 : state.amount[payload] - 1,
+    },
+  }),
+
+  [SET_COUNT_ITEM_FROM_CART]: (state, payload) => ({
+    ...state,
+    amount: {
+      ...state.amount,
+      [payload.id]:
+        payload.count >= 1 && payload.count <= 99
+          ? payload.count
+          : state.amount[payload],
     },
   }),
 

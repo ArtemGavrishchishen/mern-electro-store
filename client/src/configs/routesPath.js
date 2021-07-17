@@ -2,7 +2,7 @@ export default Object.freeze({
   MAIN: '/',
   ADMIN: '/admin',
   TECHNICS: '/technics',
-  CART: '/cart',
+  CHECKOUT: '/checkout',
   ORDERS: '/orders',
   USERS: '/users',
 })

@@ -1,3 +1,7 @@
+.empty {
+  text-align: center;
+}
+
 .btn {
   flex-shrink: 0;
   position: relative;

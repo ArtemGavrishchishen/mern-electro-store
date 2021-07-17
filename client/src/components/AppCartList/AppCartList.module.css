@@ -47,6 +47,7 @@
 }
 
 .price {
+  min-width: 110px;
   text-align: center;
   font-weight: 600;
   margin: 5px 0;
@@ -78,6 +79,8 @@
 }
 
 .btn svg {
+  width: 20px;
+  height: 20px;
   fill: rgba(128, 128, 128, 1);
 }
 

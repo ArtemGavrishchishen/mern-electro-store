@@ -48,3 +48,11 @@ export const decrementItemFromCart = id => dispatch => {
     payload: id,
   })
 }
+
+export const SET_COUNT_ITEM_FROM_CART = 'SET_COUNT_ITEM_FROM_CART'
+export const setCountItemFromCart = (id, count) => dispatch => {
+  dispatch({
+    type: SET_COUNT_ITEM_FROM_CART,
+    payload: { id, count },
+  })
+}
