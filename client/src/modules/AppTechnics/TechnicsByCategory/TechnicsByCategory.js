@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useLocation, useHistory } from 'react-router-dom'
+import queryString from 'query-string'
 import ReactPaginate from 'react-paginate'
 
 import TechnicsSettingsTop from '../TechnicsSettingsTop'
@@ -12,11 +14,49 @@ import styles from './TechnicsByCategory.module.css'
 
 const TechnicsByCategory = ({ category }) => {
   const technics = useSelector(state => state.technics)
+  const [selected, setSelected] = useState({})
+  const [currentPage, setCurrentPage] = useState(0)
+  const [pageCount, setPageCount] = useState(1)
+
   const dispatch = useDispatch()
+  const location = useLocation()
+  const history = useHistory()
 
   useEffect(() => {
-    dispatch(getTechnics(category))
-  }, [dispatch])
+    const parsed = queryString.parse(location.search, { arrayFormat: 'comma' })
+    if (parsed.page) {
+      setCurrentPage(+parsed.page)
+    }
+
+    setSelected(parsed)
+  }, [location])
+
+  useEffect(() => {
+    const query = { ...selected, page: currentPage }
+    dispatch(
+      getTechnics(category, query, ({ error, data }) => {
+        console.log('error', error)
+        console.log('getTechnics', data)
+        setPageCount(10)
+      })
+    )
+  }, [dispatch, selected, currentPage])
+
+  const handleChangePage = page => {
+    const parsed = queryString.parse(location.search, { arrayFormat: 'comma' })
+
+    if (page > 0) {
+      parsed.page = page
+      setCurrentPage(page)
+    }
+
+    const stringified = queryString.stringify(parsed, { arrayFormat: 'comma' })
+
+    history.push({
+      pathname: location.pathname,
+      search: stringified,
+    })
+  }
 
   return (
     <>
@@ -43,7 +83,11 @@ const TechnicsByCategory = ({ category }) => {
         <TabletAndDesktop>
           <div className={styles.sidebar}>
             <div className={styles.sidebarContent}>
-              <TechnicsSidebar />
+              <TechnicsSidebar
+                selected={selected}
+                location={location}
+                history={history}
+              />
             </div>
           </div>
           <div className={styles.grid}>
@@ -57,16 +101,18 @@ const TechnicsByCategory = ({ category }) => {
                 />
               ))}
             </ul>
+
             <ReactPaginate
-              initialPage={0}
+              initialPage={currentPage - 1}
+              forcePage={currentPage - 1}
               containerClassName={styles.paginate}
               pageClassName={styles.items}
               breakClassName={styles.break}
               activeClassName={styles.active}
-              pageCount={450}
+              pageCount={pageCount}
               pageRangeDisplayed={3}
               marginPagesDisplayed={1}
-              onPageChange={p => console.log(p)}
+              onPageChange={p => handleChangePage(p.selected + 1)}
             />
           </div>
         </TabletAndDesktop>

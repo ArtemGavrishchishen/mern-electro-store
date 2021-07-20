@@ -1,0 +1,28 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  width: 95%;
+  overflow: hidden;
+}
+
+.item label {
+  padding: 4px;
+  background-color: transparent;
+  transition: background-color 0.2s linear;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.item label input {
+  margin-right: 10px;
+}
+
+.item label:hover {
+  background-color: #e9ecef;
+}
