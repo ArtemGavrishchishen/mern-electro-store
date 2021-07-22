@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation, useHistory } from 'react-router-dom'
 import queryString from 'query-string'
+import get from 'lodash/get'
 import ReactPaginate from 'react-paginate'
 
 import TechnicsSettingsTop from '../TechnicsSettingsTop'
@@ -14,6 +15,7 @@ import styles from './TechnicsByCategory.module.css'
 
 const TechnicsByCategory = ({ category }) => {
   const technics = useSelector(state => state.technics)
+  const [sidebar, setSidebar] = useState({})
   const [selected, setSelected] = useState({})
   const [currentPage, setCurrentPage] = useState(0)
   const [pageCount, setPageCount] = useState(1)
@@ -32,11 +34,12 @@ const TechnicsByCategory = ({ category }) => {
   }, [location])
 
   useEffect(() => {
-    const query = { ...selected, page: currentPage }
+    const query = { ...selected, page: currentPage + 1 }
     dispatch(
       getTechnics(category, query, ({ error, data }) => {
-        console.log('error', error)
-        console.log('getTechnics', data)
+        if (error) return
+        const sidebar = get(data, 'data.sidebar', null)
+        setSidebar(sidebar)
         setPageCount(10)
       })
     )
@@ -84,6 +87,7 @@ const TechnicsByCategory = ({ category }) => {
           <div className={styles.sidebar}>
             <div className={styles.sidebarContent}>
               <TechnicsSidebar
+                sidebar={sidebar}
                 selected={selected}
                 location={location}
                 history={history}

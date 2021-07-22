@@ -1,21 +1,64 @@
 const needle = require('needle')
+const uniq = require('lodash/uniq')
 
 const Technics = require('../models/Technics')
 
-exports.getTechnics = async (category, id) => {
+exports.getTechnics = async (category, query) => {
   try {
     const params = {}
     if (category) {
       params.type = category
     }
+    if (query) {
+      if (query.brand) {
+        const brand = Array.isArray(query.brand)
+          ? { $in: [...query.brand] }
+          : { $in: [query.brand] }
 
-    if (id) {
-      params._id = id
+        params.brand = brand
+      }
+
+      if (query.model) {
+        const model = Array.isArray(query.model)
+          ? { $in: [...query.model] }
+          : { $in: [query.model] }
+
+        params.model = model
+      }
     }
 
-    const technics = await Technics.find({ ...params })
+    const technics = await Technics.find({ ...params }).sort({
+      createdAt: -1,
+    })
 
-    return technics
+    const getUniqParams = key => {
+      const uniqParams = uniq(technics.map(item => item[key]))
+
+      return uniqParams.map(item => {
+        const count = technics.reduce(
+          (acc, el) => (el[key] === item ? acc + 1 : acc + 0),
+          0
+        )
+        return { name: item, count }
+      })
+    }
+
+    const initSidebarParams = {
+      brand: getUniqParams('brand'),
+      model: getUniqParams('model'),
+    }
+
+    return { technics, sidebar: initSidebarParams }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+exports.getTechnicById = async (category, id) => {
+  try {
+    const technic = await Technics.find({ type: category, _id: id })
+
+    return technic
   } catch (error) {
     console.log(error)
   }

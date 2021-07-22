@@ -13,26 +13,23 @@ import { getTechnicsById } from '../store/actions/technics.actions'
 
 const TechnicsPage = () => {
   const dispatch = useDispatch()
-  const [category, setCategory] = useState(null)
   const [itemId, setItemId] = useState(null)
+  const [category, setCategory] = useState(null)
   const [technicsById, setTechnicsById] = useState(null)
 
-  const match = useRouteMatch(`${routesPath.TECHNICS}/:category`)
-  const matchItem = useRouteMatch(`${routesPath.TECHNICS}/${category}/:itemId`)
+  const match = useRouteMatch(`${routesPath.TECHNICS}/:category?/:itemId?`)
 
   useEffect(() => {
-    const params = get(match, 'params.category', null)
-    if (params !== category) {
-      setCategory(params)
+    const params = get(match, 'params', null)
+
+    if (params.itemId !== itemId) {
+      setItemId(params.itemId)
+    }
+
+    if (params.category !== category) {
+      setCategory(params.category)
     }
   }, [match])
-
-  useEffect(() => {
-    const id = get(matchItem, 'params.itemId', null)
-    if (id !== itemId) {
-      setItemId(id)
-    }
-  }, [matchItem])
 
   const initBreadcrumb = [
     { name: 'Home', route: routesPath.MAIN },
@@ -76,6 +73,15 @@ const TechnicsPage = () => {
     }
   }, [category, itemId, dispatch])
 
+  if (!category && !itemId) {
+    return (
+      <>
+        <AppBreadcrumb breadcrumb={breadcrumb} />
+        <TechnicsMain />
+      </>
+    )
+  }
+
   if (itemId) {
     return (
       <>
@@ -83,15 +89,10 @@ const TechnicsPage = () => {
         <TechnicsById technic={technicsById} dispatch={dispatch} />
       </>
     )
+  } else if (category) {
   }
-  if (!category) {
-    return (
-      <>
-        <AppBreadcrumb breadcrumb={breadcrumb} />
-        <TechnicsMain />
-      </>
-    )
-  } else {
+
+  if (category) {
     return (
       <>
         <AppBreadcrumb breadcrumb={breadcrumb} />
@@ -99,6 +100,7 @@ const TechnicsPage = () => {
       </>
     )
   }
+  return null
 }
 
 export default TechnicsPage

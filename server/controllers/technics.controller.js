@@ -6,11 +6,27 @@ const TechnicsService = require('../services/technics.service')
 exports.getTechnics = async (req, res) => {
   try {
     const category = get(req, 'params.category', null)
-    const id = get(req, 'params.id', null)
+    const query = get(req, 'query', null)
 
-    const technics = await TechnicsService.getTechnics(category, id)
+    const technics = await TechnicsService.getTechnics(category, query)
     if (technics) {
       return res.status(200).send({ data: technics })
+    } else {
+      return res.status(400).send({ message: 'Bad request.' })
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+exports.getTechnicById = async (req, res) => {
+  try {
+    const category = get(req, 'params.category', null)
+    const id = get(req, 'params.id', null)
+
+    const technic = await TechnicsService.getTechnicById(category, id)
+    if (technic) {
+      return res.status(200).send({ data: technic })
     } else {
       return res.status(400).send({ message: 'Bad request.' })
     }

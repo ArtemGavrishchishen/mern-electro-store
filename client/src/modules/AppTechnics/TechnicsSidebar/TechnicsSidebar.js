@@ -1,30 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import queryString from 'query-string'
 import get from 'lodash/get'
 
 import AppCheckBox from '../../../components/AppCheckBox'
 import styles from './TechnicsSidebar.module.css'
 
-const TechnicsSidebar = ({ params, selected, location, history }) => {
-  const [sidebar, setSidebar] = useState({})
-
-  useEffect(() => {
-    setSidebar({
-      brand: [
-        { name: 'brand_1', count: 5 },
-        { name: 'brand_2', count: 10 },
-        { name: 'brand_3', count: 8 },
-        { name: 'brand_4', count: 2 },
-      ],
-      model: [
-        { name: 'model_1', count: 5 },
-        { name: 'model_2', count: 10 },
-        { name: 'model_3', count: 8 },
-        { name: 'model_4', count: 2 },
-      ],
-    })
-  }, [params])
-
+const TechnicsSidebar = ({ sidebar, selected, location, history }) => {
   const toggleCheckFromItems = (items, value) => {
     if (Array.isArray(items)) {
       return items.includes(value)

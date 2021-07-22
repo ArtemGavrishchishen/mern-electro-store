@@ -1,7 +1,7 @@
 import { GET_TECHNICS } from '../actions/technics.actions'
 
 const handlers = {
-  [GET_TECHNICS.SUCCESS]: (state, payload) => [...payload.data],
+  [GET_TECHNICS.SUCCESS]: (state, payload) => [...payload.data.technics],
 
   [GET_TECHNICS.REQUEST]: (state, payload) => {
     return []
