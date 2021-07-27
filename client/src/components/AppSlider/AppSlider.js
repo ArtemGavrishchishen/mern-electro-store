@@ -3,7 +3,12 @@ import Carousel from 'react-bootstrap/Carousel'
 import Container from 'react-bootstrap/Container'
 
 import { isMobile } from '../../configs/Responsive'
-import technics from './assets/technics.png'
+
+import apple from './assets/apple.jpeg'
+import xiaomi from './assets/xiaomi.jpeg'
+import samsung from './assets/samsung.jpeg'
+
+import styles from './AppSlider.module.css'
 
 const AppSlider = () => {
   const [index, setIndex] = useState(0)
@@ -16,29 +21,69 @@ const AppSlider = () => {
     <Container fluid={isMobile()}>
       <Carousel activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item>
-          <img className="d-block w-100" src={technics} alt="First slide" />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
+          <div
+            className={styles.item}
+            style={{
+              backgroundImage: `url(${apple})`,
+            }}
+          >
+            <div
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <Carousel.Caption>
+                <h3>Apple sale</h3>
+                <p>Buy your dream with our store.</p>
+              </Carousel.Caption>
+            </div>
+          </div>
         </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src={technics} alt="Second slide" />
 
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
+        <Carousel.Item>
+          <div
+            className={styles.item}
+            style={{
+              backgroundImage: `url(${samsung})`,
+            }}
+          >
+            <div
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <Carousel.Caption>
+                <h3>The limited-time offer</h3>
+                <p>The best technics by the lowest price.</p>
+              </Carousel.Caption>
+            </div>
+          </div>
         </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src={technics} alt="Third slide" />
 
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
+        <Carousel.Item>
+          <div
+            className={styles.item}
+            style={{
+              backgroundImage: `url(${xiaomi})`,
+            }}
+          >
+            <div
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <Carousel.Caption>
+                <h3>Stay connected</h3>
+                <p>Buy mobile phones for years.</p>
+              </Carousel.Caption>
+            </div>
+          </div>
         </Carousel.Item>
       </Carousel>
     </Container>

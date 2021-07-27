@@ -25,7 +25,8 @@ const AppCheckBox = ({
                 onChange={handleChange}
                 checked={selected.includes(item.name)}
               />
-              {item.name}
+              <span>{item.name}</span>
+              <span className={styles.count}> ({item.count})</span>
             </label>
           </li>
         ))}

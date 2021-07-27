@@ -1,5 +1,6 @@
 const needle = require('needle')
 const uniq = require('lodash/uniq')
+const get = require('lodash/get')
 
 const Technics = require('../models/Technics')
 
@@ -9,23 +10,27 @@ exports.getTechnics = async (category, query) => {
     if (category) {
       params.type = category
     }
-    if (query) {
-      if (query.brand) {
-        const brand = Array.isArray(query.brand)
-          ? { $in: [...query.brand] }
-          : { $in: [query.brand] }
 
-        params.brand = brand
-      }
+    const brand = get(query, 'brand', null)
+    const model = get(query, 'model', null)
 
-      if (query.model) {
-        const model = Array.isArray(query.model)
-          ? { $in: [...query.model] }
-          : { $in: [query.model] }
-
-        params.model = model
-      }
+    const checkAndConvertToArray = items => {
+      return Array.isArray(items) ? [...items] : [items]
     }
+
+    if (brand) {
+      params.brand = { $in: [...checkAndConvertToArray(brand)] }
+    }
+
+    if (model) {
+      params.model = { $in: [...checkAndConvertToArray(model)] }
+    }
+
+    const aggregateTechnicsBrand = await Technics.aggregate([
+      { $match: { type: category } },
+      { $group: { _id: '$brand', count: { $sum: 1 } } },
+      { $sort: { _id: 1 } },
+    ])
 
     const technics = await Technics.find({ ...params }).sort({
       createdAt: -1,
@@ -43,12 +48,31 @@ exports.getTechnics = async (category, query) => {
       })
     }
 
-    const initSidebarParams = {
-      brand: getUniqParams('brand'),
-      model: getUniqParams('model'),
+    const initSidebarParams = (brand, model) => {
+      const init = {}
+
+      if (model) {
+        init.brand = getUniqParams('brand')
+      } else {
+        init.brand = aggregateTechnicsBrand.map(brand => ({
+          name: brand._id,
+          count: brand.count,
+        }))
+      }
+
+      if (brand && checkAndConvertToArray(brand).length === 1) {
+        init.model = getUniqParams('model')
+      } else {
+        init.model = []
+      }
+
+      return { ...init }
     }
 
-    return { technics, sidebar: initSidebarParams }
+    return {
+      technics,
+      sidebar: initSidebarParams(brand, model),
+    }
   } catch (error) {
     console.log(error)
   }

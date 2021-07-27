@@ -26,3 +26,8 @@
 .item label:hover {
   background-color: #e9ecef;
 }
+
+.count {
+  color: #b1b5b9;
+  font-size: 14px;
+}
